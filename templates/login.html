@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-header">
+    <h1>Welcome Back</h1>
+    <p>Sign in to your account securely.</p>
+</div>
+
+<form method="POST" action="{{ url_for('login') }}" class="auth-form">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-wrapper">
+            <input type="text" id="username" name="username" required autocomplete="username"
+                placeholder="Enter username">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="Enter email address">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+            <input type="password" id="password" name="password" required autocomplete="current-password"
+                placeholder="Enter password">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</form>
+
+<div class="auth-footer">
+    <p>Don't have an account? <a href="{{ url_for('register') }}" class="back-link"
+            style="color: var(--accent-color); font-weight: 600;">Sign Up Here</a></p>
+</div>
+{% endblock %}

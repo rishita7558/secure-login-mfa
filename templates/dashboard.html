@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-header auth-header">
+    <h2>Secure Dashboard</h2>
+    <p>Authentication Successful.</p>
+</div>
+
+<div class="dashboard-content">
+    <div class="welcome-card">
+        <h3>Welcome, <span class="highlight">{{ username }}</span>!</h3>
+        <p>You have successfully completed the Two-Factor Authentication process and accessed your secure area.</p>
+
+        <div class="security-status">
+            <div class="status-item">
+                <span class="status-icon success-icon">✓</span> Primary Auth Passed
+            </div>
+            <div class="status-item">
+                <span class="status-icon success-icon">✓</span> Multi-Factor Auth Passed
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-footer auth-footer">
+    <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-block">Sign Out</a>
+</div>
+{% endblock %}

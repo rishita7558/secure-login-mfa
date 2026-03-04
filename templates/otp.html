@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-header">
+    <h1>Two-Step Verification</h1>
+    <p>Please enter the 6-digit code provided to you.</p>
+</div>
+
+<form method="POST" action="{{ url_for('verify_otp_route') }}" class="auth-form otp-form">
+    <div class="form-group pin-group">
+        <label for="otp">One-Time Password</label>
+        <div class="input-wrapper">
+            <input type="text" id="otp" name="otp" required autocomplete="one-time-code" placeholder="------"
+                maxlength="6" pattern="\d{6}">
+        </div>
+        <small class="help-text">Code expires in 3 minutes.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Verify Code</button>
+</form>
+
+<div class="auth-footer">
+    <a href="{{ url_for('login') }}" class="back-link">Back to Login</a>
+</div>
+{% endblock %}
