@@ -53,8 +53,14 @@ def login():
         password = request.form.get('password')
         
         user = User.query.filter_by(username=username).first()
-        # Verify user exists, email matches, and password matches
-        if user and user.email == email and bcrypt.check_password_hash(user.password_hash, password):
+        
+        if not user:
+            # No account found with this username
+            flash('No account found with that username. Please register first.', 'error')
+        elif user.email != email or not bcrypt.check_password_hash(user.password_hash, password):
+            # User exists but email or password is wrong
+            flash('Incorrect email or password. Please try again.', 'error')
+        else:
             # Primary auth success - Generate OTP
             otp_secret = generate_otp_secret()
             session['otp_secret'] = otp_secret
@@ -74,8 +80,6 @@ def login():
                 flash('Failed to send OTP email. Please check server configuration.', 'error')
             
             return redirect(url_for('verify_otp_route'))
-        else:
-            flash('Login Unsuccessful. Please check your credentials.', 'error')
             
     return render_template('login.html', title='Login')
 

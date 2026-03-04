@@ -352,10 +352,14 @@ label {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    position: absolute;
-    top: -80px;
-    left: 0;
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 440px;
+    z-index: 9999;
+    padding: 0 24px;
 }
 
 .alert {
